@@ -1,0 +1,148 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Pizza Clicker Deluxe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Inter:wght@400;600;800&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+            background-color: #1a1a1a;
+            user-select: none;
+        }
+        .font-bungee {
+            font-family: 'Bungee', cursive;
+        }
+        .font-marker {
+            font-family: 'Permanent Marker', cursive;
+        }
+        
+        /* Pizzeria Checkered Pattern */
+        .checkered-bg {
+            background-image: 
+                linear-gradient(45deg, #ef4444 25%, transparent 25%), 
+                linear-gradient(-45deg, #ef4444 25%, transparent 25%), 
+                linear-gradient(45deg, transparent 75%, #ef4444 75%), 
+                linear-gradient(-45deg, transparent 75%, #ef4444 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+            background-color: #fff;
+        }
+
+        /* Chalkboard Texture */
+        .chalkboard {
+            background: #1c1c1c;
+            box-shadow: inset 0 0 40px rgba(0,0,0,1);
+            border: 8px solid #5d4037;
+        }
+
+        /* Juicy Poppy Click Animation */
+        @keyframes pizza-pop {
+            0% { transform: scale(1); }
+            10% { transform: scale(0.85) rotate(-3deg); filter: brightness(1.5); }
+            30% { transform: scale(1.15) rotate(5deg); filter: brightness(1.2); }
+            50% { transform: scale(0.95) rotate(-2deg); filter: brightness(1); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+        .animate-pop {
+            animation: pizza-pop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        /* Floating Particle Animation */
+        @keyframes float-up {
+            0% { transform: translateY(0) scale(0.5); opacity: 0; }
+            20% { transform: translateY(-20px) scale(1.4); opacity: 1; }
+            100% { transform: translateY(-150px) scale(1); opacity: 0; }
+        }
+        .particle {
+            pointer-events: none;
+            position: absolute;
+            animation: float-up 0.8s ease-out forwards;
+            font-weight: 900;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.5);
+        }
+
+        /* Background Rays Animation for Bonus */
+        @keyframes rotate-rays {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .bonus-rays {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(
+                from 0deg,
+                transparent 0deg 15deg,
+                rgba(251, 191, 36, 0.1) 15deg 30deg,
+                transparent 30deg 45deg,
+                rgba(251, 191, 36, 0.1) 45deg 60deg,
+                transparent 60deg 75deg,
+                rgba(251, 191, 36, 0.1) 75deg 90deg,
+                transparent 90deg
+            );
+            animation: rotate-rays 10s linear infinite;
+            pointer-events: none;
+        }
+
+        /* Golden Pizza Wobble */
+        @keyframes golden-wobble {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.1) rotate(10deg); }
+            75% { transform: scale(1.1) rotate(-10deg); }
+        }
+        .golden-pizza {
+            animation: golden-wobble 0.5s infinite ease-in-out;
+            cursor: pointer;
+            filter: drop-shadow(0 0 20px #fbbf24);
+        }
+
+        @keyframes bounce-subtle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        .animate-bounce-subtle {
+            animation: bounce-subtle 2s infinite ease-in-out;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #2d2d2d;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ef4444;
+            border-radius: 4px;
+        }
+
+        /* Modal specific scrollbar hiding for horizontal navigation */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.38.0",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <div id="root"></div>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
